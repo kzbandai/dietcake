@@ -2,9 +2,9 @@
 
 class TestPlayer extends Model
 {
-    public $validation = array(
-        'name' => array(
-            'between' => array('validate_between', 3, 16),
-        ),
-    );
+    public $validation = [
+        'name' => [
+            'between' => ['validate_between', 3, 16],
+        ],
+    ];
 }
