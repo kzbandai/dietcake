@@ -1,4 +1,5 @@
 <?php
+
 namespace DietCake;
 
 class Model
@@ -7,7 +8,7 @@ class Model
     public $validation;
     public $validation_errors;
 
-    public function __construct(array $data = array())
+    public function __construct(array $data = [])
     {
         $this->set($data);
     }
@@ -48,9 +49,9 @@ class Model
                 $validate_func = array_shift($args);
                 if (method_exists($this, $validate_func)) {
                     // 検証メソッドがモデルに存在するとき実行
-                    $valid = call_user_func_array(array($this, $validate_func), array_merge(array($v), $args));
+                    $valid = call_user_func_array([$this, $validate_func], array_merge([$v], $args));
                 } elseif (function_exists($validate_func)) {
-                    $valid = call_user_func_array($validate_func, array_merge(array($v), $args));
+                    $valid = call_user_func_array($validate_func, array_merge([$v], $args));
                 } else {
                     // 存在しない検証メソッドのときエラー
                     throw new DCException("{$validate_func} does not exist");
@@ -61,6 +62,7 @@ class Model
                 }
             }
         }
+
         return $errors === 0 ? true : false;
     }
 
@@ -81,6 +83,7 @@ class Model
                 }
             }
         }
+
         return false;
     }
 }

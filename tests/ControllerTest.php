@@ -1,4 +1,5 @@
 <?php
+
 namespace DietCake;
 
 use PHPUnit\Framework\TestCase;
@@ -21,11 +22,11 @@ class ControllerTest extends TestCase
     {
         $controller = new Controller('');
         $controller->set('foo', 100);
-        $controller->set('bar', array(1, 2));
+        $controller->set('bar', [1, 2]);
         $this->assertEquals(100, $controller->view->vars['foo']);
-        $this->assertEquals(array(1, 2), $controller->view->vars['bar']);
+        $this->assertEquals([1, 2], $controller->view->vars['bar']);
 
-        $controller->set(array('foo' => 200));
+        $controller->set(['foo' => 200]);
         $this->assertEquals(200, $controller->view->vars['foo']);
     }
 }

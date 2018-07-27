@@ -1,4 +1,5 @@
 <?php
+
 namespace DietCake;
 
 use PHPUnit\Framework\TestCase;

@@ -1,4 +1,5 @@
 <?php
+
 namespace DietCake;
 
 class Controller
@@ -56,6 +57,7 @@ class Controller
     public static function isAction($action)
     {
         $methods = get_class_methods('Controller');
+
         return !in_array($action, $methods);
     }
 

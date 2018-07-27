@@ -1,10 +1,11 @@
 <?php
+
 namespace DietCake;
 
 class View
 {
     public $controller;             // コントローラへの参照
-    public $vars = array();         // 展開する変数
+    public $vars = [];         // 展開する変数
     public static $ext = '.php';
 
     public function __construct($controller)
@@ -45,6 +46,7 @@ class View
         ob_implicit_flush(0);
         include $filename;
         $out = ob_get_clean();
+
         return $out;
     }
 }
