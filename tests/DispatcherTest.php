@@ -1,6 +1,6 @@
 <?php
 
-namespace DietCake;
+namespace DietCook;
 
 use PHPUnit\Framework\TestCase;
 
@@ -14,7 +14,7 @@ class DispatcherTest extends TestCase
     }
 
     /**
-     * @expectedException \DietCake\DCException
+     * @expectedException \DietCook\DCException
      */
     public function testParseAction02()
     {
@@ -28,7 +28,7 @@ class DispatcherTest extends TestCase
     }
 
     /**
-     * @expectedException \DietCake\DCException
+     * @expectedException \DietCook\DCException
      */
     public function testGetController_02()
     {

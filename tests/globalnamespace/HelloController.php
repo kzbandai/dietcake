@@ -1,6 +1,6 @@
 <?php
 
-use DietCake\Controller;
+use DietCook\Controller;
 
 class HelloController extends Controller
 {
