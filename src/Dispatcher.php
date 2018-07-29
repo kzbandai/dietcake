@@ -1,6 +1,6 @@
 <?php
 
-namespace DietCake;
+namespace DietCook;
 
 class Dispatcher
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace DietCake;
+namespace DietCook;
 
 use PHPUnit\Framework\TestCase;
 

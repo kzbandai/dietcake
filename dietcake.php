@@ -1,13 +1,13 @@
 <?php
 /**
- * DietCake - Fastest MVC framework skeleton
+ * DietCook - Fastest MVC framework skeleton
  *
  * @copyright bunkyo-koki Co.,Ltd.
  * @license   MIT License
  * @author    Tatsuya Tsuruoka <http://github.com/ttsuruoka>
  */
 
-use DietCake\Dispatcher;
+use DietCook\Dispatcher;
 
 mb_internal_encoding('UTF-8');
 define('TIME_START', microtime(true));
