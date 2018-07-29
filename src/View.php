@@ -4,8 +4,8 @@ namespace DietCake;
 
 class View
 {
-    public $controller;             // コントローラへの参照
-    public $vars = [];         // 展開する変数
+    public $controller;
+    public $vars = [];
     public static $ext = '.php';
 
     public function __construct($controller)
@@ -15,17 +15,18 @@ class View
 
     /**
      * コンテンツをレンダリングする
-     *
      * $this->render(); // 現在のコントローラ/アクションのビュー
      * $this->render('edit'); // 現在のコントローラ、edit アクションのビュー
      * $this->render('error/503'); // error コントローラ、503 アクションのビューをレンダリング
      *
      * @param string $action レンダリングするアクション名
+     *
      * @return void
+     * @throws DCException
      */
-    public function render($action = null)
+    public function render(?string $action = null): void
     {
-        $action = is_null($action) ? $this->controller->action : $action;
+        $action = $action ?? $this->controller->action;
         if (strpos($action, '/') === false) {
             $view_filename = VIEWS_DIR . $this->controller->name . '/' . $action . static::$ext;
         } else {
@@ -35,7 +36,14 @@ class View
         $this->controller->output .= $content;
     }
 
-    public static function extract($filename, $vars)
+    /**
+     * @param string $filename
+     * @param        $vars
+     *
+     * @return string
+     * @throws DCException
+     */
+    public static function extract(string $filename, array $vars): string
     {
         if (!file_exists($filename)) {
             throw new DCException("{$filename} is not found");
@@ -45,8 +53,7 @@ class View
         ob_start();
         ob_implicit_flush(0);
         include $filename;
-        $out = ob_get_clean();
 
-        return $out;
+        return ob_get_clean();
     }
 }

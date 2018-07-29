@@ -4,15 +4,12 @@ namespace DietCake;
 
 class Controller
 {
-    public $name;           // コントローラ名
-    public $action;         // アクション名
-
+    public $name;
+    public $action;
     /** @var View $view */
-    public $view;           // ビュークラスのインスタンス
-
-    public $default_view_class = 'View';     // デフォルトのビュークラス名
-
-    public $output;         // 出力結果
+    public $view;
+    public $default_view_class = 'View';
+    public $output;
 
     public function __construct($name)
     {
@@ -28,6 +25,10 @@ class Controller
     {
     }
 
+    /**
+     * @throws DCException
+     * @throws \ReflectionException
+     */
     public function dispatchAction()
     {
         if (!static::isAction($this->action)) {
@@ -47,24 +48,21 @@ class Controller
             }
         }
 
-        // アクションの実行
         $this->{$this->action}();
 
         $this->render();
     }
 
-    // アクション名の妥当性を検証する
-    public static function isAction($action)
+    public static function isAction($action): bool
     {
         $methods = get_class_methods('Controller');
 
-        return !in_array($action, $methods);
+        return !\in_array($action, $methods, true);
     }
 
-    // ビューに値を渡す
-    public function set($name, $value = null)
+    public function set($name, $value = null): void
     {
-        if (is_array($name)) {
+        if (\is_array($name)) {
             foreach ($name as $k => $v) {
                 $this->view->vars[$k] = $v;
             }
@@ -77,7 +75,12 @@ class Controller
     {
     }
 
-    public function render($action = null)
+    /**
+     * @param null|string $action
+     *
+     * @throws DCException
+     */
+    public function render(?string $action = null)
     {
         static $is_rendered = false;
 

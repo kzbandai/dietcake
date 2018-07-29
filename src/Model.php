@@ -5,7 +5,9 @@ namespace DietCake;
 class Model
 {
     public $id;
+    /** @var array $validation */
     public $validation;
+    /** @var array $validation_errors */
     public $validation_errors;
 
     public function __construct(array $data = [])
@@ -13,15 +15,7 @@ class Model
         $this->set($data);
     }
 
-    /**
-     * メンバの値をセットする
-     *
-     * 複数のメンバの値を一度にセットできます。
-     *
-     * @param array $data
-     *
-     */
-    public function set(array $data)
+    public function set(array $data): void
     {
         foreach ($data as $k => $v) {
             $this->$k = $v;
@@ -29,16 +23,12 @@ class Model
     }
 
     /**
-     * メンバの値が正しいか検証する
-     *
-     * @return boolean 正しいとき true、それ以外のとき false
      * @throws DCException
      */
-    public function validate()
+    public function validate(): bool
     {
         $members = get_object_vars($this);
-        unset($members['validation']);
-        unset($members['validation_errors']);
+        unset($members['validation'], $members['validation_errors']);
 
         $errors = 0;
         foreach ($members as $member => $v) {
@@ -48,12 +38,10 @@ class Model
             foreach ($this->validation[$member] as $rule_name => $args) {
                 $validate_func = array_shift($args);
                 if (method_exists($this, $validate_func)) {
-                    // 検証メソッドがモデルに存在するとき実行
-                    $valid = call_user_func_array([$this, $validate_func], array_merge([$v], $args));
-                } elseif (function_exists($validate_func)) {
-                    $valid = call_user_func_array($validate_func, array_merge([$v], $args));
+                    $valid = \call_user_func_array([$this, $validate_func], array_merge([$v], $args));
+                } elseif (\function_exists($validate_func)) {
+                    $valid = \call_user_func_array($validate_func, array_merge([$v], $args));
                 } else {
-                    // 存在しない検証メソッドのときエラー
                     throw new DCException("{$validate_func} does not exist");
                 }
                 $this->validation_errors[$member][$rule_name] = $valid ? false : true;
@@ -63,15 +51,10 @@ class Model
             }
         }
 
-        return $errors === 0 ? true : false;
+        return $errors === 0;
     }
 
-    /**
-     * メンバの値にエラーがあるか調べる
-     *
-     * @return boolean エラーがあるとき true、それ以外のとき false
-     */
-    public function hasError()
+    public function hasError(): bool
     {
         if (empty($this->validation_errors)) {
             return false;
