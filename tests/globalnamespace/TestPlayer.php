@@ -1,6 +1,6 @@
 <?php
 
-class TestPlayer extends Model
+class TestPlayer extends \DietCook\Model
 {
     public $validation = [
         'name' => [
