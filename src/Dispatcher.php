@@ -4,11 +4,15 @@ namespace DietCake;
 
 class Dispatcher
 {
-    const DC_ACTION = 'dc_action';
+    public const DC_ACTION = 'dc_action';
 
+    /**
+     * @throws DCException
+     * @throws \ReflectionException
+     */
     public static function invoke()
     {
-        list($controller_name, $action_name) = static::parseAction(Param::get(DC_ACTION));
+        [$controller_name, $action_name] = static::parseAction(Param::get(DC_ACTION));
 
         $controller = static::getController($controller_name);
 
@@ -22,33 +26,33 @@ class Dispatcher
 
     /**
      * コントローラ/アクション名を取得する
-     *
      * url は必ず http://example.com/index.php?dc_action=controller-name/action-name の形
      *
-     * @param string $action
+     * @param string $dc_action
+     *
      * @return array
      * @throws DCException
      */
-    public static function parseAction($action)
+    public static function parseAction(string $dc_action): array
     {
-        $action = explode('/', $action);
+        $action = explode('/', $dc_action);
 
-        if (count($action) < 2) {
+        if (\count($action) < 2) {
             throw new DCException('invalid url format');
         }
         $action_name = array_pop($action);
-        $controller_name = join("_", $action);
+        $controller_name = implode('_', $action);
 
         return [$controller_name, $action_name];
     }
 
     /**
-     *
      * @param string $controller_name
+     *
      * @return Controller
      * @throws DCException
      */
-    public static function getController($controller_name)
+    public static function getController($controller_name): Controller
     {
         $controller_class = Inflector::camelize($controller_name) . 'Controller';
 

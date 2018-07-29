@@ -4,9 +4,9 @@ namespace DietCake;
 
 class Param
 {
-    public static function get($name, $default = null)
+    public static function get(string $name, $default = null)
     {
-        return isset($_REQUEST[$name]) ? $_REQUEST[$name] : $default;
+        return $_REQUEST[$name] ?? $default;
     }
 
     public static function params()

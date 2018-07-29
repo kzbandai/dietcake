@@ -3,8 +3,8 @@
  * DietCake - Fastest MVC framework skeleton
  *
  * @copyright bunkyo-koki Co.,Ltd.
- * @license MIT License
- * @author Tatsuya Tsuruoka <http://github.com/ttsuruoka>
+ * @license   MIT License
+ * @author    Tatsuya Tsuruoka <http://github.com/ttsuruoka>
  */
 
 use DietCake\Dispatcher;
