@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 class ControllerTest extends TestCase
 {
-    public function testIsAction()
+    public function testIsAction(): void
     {
         $this->assertTrue(Controller::isAction('index'));
         $this->assertTrue(Controller::isAction('view'));
@@ -18,7 +18,7 @@ class ControllerTest extends TestCase
         $this->assertFalse(Controller::isAction('render'));
     }
 
-    public function testSet()
+    public function testSet(): void
     {
         $controller = new Controller('');
         $controller->set('foo', 100);

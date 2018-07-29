@@ -8,7 +8,7 @@ class Controller
     public $action;
     /** @var View $view */
     public $view;
-    public $default_view_class = 'View';
+    public $default_view_class = View::class;
     public $output;
 
     public function __construct($name)
@@ -50,9 +50,9 @@ class Controller
         $this->render();
     }
 
-    public static function isAction($action): bool
+    public static function isAction(string $action): bool
     {
-        $methods = get_class_methods('Controller');
+        $methods = get_class_methods(self::class);
 
         return !\in_array($action, $methods, true);
     }

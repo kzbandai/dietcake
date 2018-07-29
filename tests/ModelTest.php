@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 class ModelTest extends TestCase
 {
-    public function testSet()
+    public function testSet(): void
     {
         $model = new Model;
         $model->set(['foo' => 200, 'bar' => 'test']);
@@ -14,10 +14,10 @@ class ModelTest extends TestCase
         $this->assertEquals('test', $model->bar);
     }
 
-    public function testValidate()
+    public function testValidate(): void
     {
         require_once __DIR__ . '/globalnamespace/TestPlayer.php';
-        $test_player = new \TestPlayer;
+        $test_player = new \TestPlayer();
         $test_player->name = '';
         $this->assertFalse($test_player->validate());
         $this->assertTrue($test_player->hasError());
