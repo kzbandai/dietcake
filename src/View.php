@@ -14,12 +14,16 @@ class View
     }
 
     /**
-     * コンテンツをレンダリングする
-     * $this->render(); // 現在のコントローラ/アクションのビュー
-     * $this->render('edit'); // 現在のコントローラ、edit アクションのビュー
-     * $this->render('error/503'); // error コントローラ、503 アクションのビューをレンダリング
+     * $this->render();
+     * view with current controller and action
      *
-     * @param string $action レンダリングするアクション名
+     * $this->render('edit');
+     * view with current controller and "edit" action
+     *
+     * $this->render('error/503');
+     * view with error controller and 503 action
+     *
+     * @param string $action action name will be rendered
      *
      * @return void
      * @throws DCException

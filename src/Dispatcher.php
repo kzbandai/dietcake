@@ -25,8 +25,7 @@ class Dispatcher
     }
 
     /**
-     * コントローラ/アクション名を取得する
-     * url は必ず http://example.com/index.php?dc_action=controller-name/action-name の形
+     * URL MUST be http://example.com/index.php?dc_action=controller-name/action-name
      *
      * @param string $dc_action
      *
