@@ -9,7 +9,7 @@ class Param
         return $_REQUEST[$name] ?? $default;
     }
 
-    public static function params()
+    public static function params(): array
     {
         return $_REQUEST;
     }

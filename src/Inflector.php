@@ -4,20 +4,12 @@ namespace DietCook;
 
 class Inflector
 {
-    /**
-     * @param string $str
-     * @return string
-     */
-    public static function camelize($str)
+    public static function camelize(string $str): string
     {
         return str_replace(' ', '', ucwords(str_replace('_', ' ', $str)));
     }
 
-    /**
-     * @param string $str
-     * @return string
-     */
-    public static function underscore($str)
+    public static function underscore(string $str): string
     {
         /* [A-Z]+ と [A-Z][a-z]* を単語とみなす。
          * つまり、単語の境界は
