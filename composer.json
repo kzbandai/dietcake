@@ -1,6 +1,6 @@
 {
-    "name": "dietcake/dietcake",
-    "description": "Super fast MVC framework for PHP",
+    "name": "kzbandai/dietcook",
+    "description": "modern and globalized dietcake",
     "type": "library",
     "require-dev": {
         "phpunit/phpunit": "^7.0"
