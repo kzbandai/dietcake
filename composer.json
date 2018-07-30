@@ -3,11 +3,16 @@
     "description": "Super fast MVC framework for PHP",
     "type": "library",
     "require-dev": {
-        "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.0 || ^7.0"
+        "phpunit/phpunit": "^7.0"
     },
     "autoload": {
         "psr-4": {
             "DietCook\\": "src/"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "7.2"
         }
     },
     "license": "MIT",
